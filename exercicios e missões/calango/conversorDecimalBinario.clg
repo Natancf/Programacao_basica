@@ -1,0 +1,95 @@
+algoritmo Missão_1;
+// Síntese
+//  Objetivo:	Fazer um programa que possua um menu de opções para o usuário.
+
+//  Entrada :	Número com a opção do menu
+//				Caso escolha a opção 2 ou 3, terá que informar os dados solicitados
+//				Dentro das opções haverá como voltar ao menu, nas opções 2 e 3 só haverá a escolha de voltar após a conclusão da operação
+//				Nas opções 2 e 3, também terá a escolha de realizar o operação novamente
+
+//  Saída   :	Na opção 1 - informações sobre o desenvolvedor
+//				Na opção 2 - cálculo do IMC e opções de voltar ou realizar a operação mais uma vez
+//				Na opção 3 - produto da multiplicação e opções de voltar ou realizar a operação mais uma vez
+//				Na opção 4 - fechar o programa
+
+
+principal
+	// Declarações
+	caracter menu, voltarmenu, repetir;
+	real altura, peso, imc, num1, num2, produto;
+	
+	// Instruções
+	menu = '0'; //inicialização da variavel menu
+	repetir = '1'; //inicialização da variavel repetir
+	imc = 0.0; //inicialização da varivel imc
+	
+	enquanto (menu != '4') faca
+		escreval("──────────────────");//formatação
+		escreval("Menu:"); //Menu
+		escreval("1 - informações");
+		escreval("2 - Calcular IMC");
+		escreval("3 - Multiplicação");
+		escreval("4 - Sair");
+		leiaCaracter(menu);
+		
+		escolha (menu)
+		
+			caso '1'//apresenta informações sobre o desenvolvedor
+				escreval("──────────────────");//formatação
+				escreval("Nome: Natanael Costa de Freitas");
+				escreval("Matrícula: 202017728");
+				escreval("Turma: 15A");
+				escreval("Semestre: 1º semestre");
+				escreval(" ");//formatação
+				escreval("2 - voltar");//laço repetir, caso aperte 2 o laço passa a ser falso logo ele sai do laço
+				leiaCaracter(repetir);
+				interrompa;
+				
+			caso '2' //calcula o IMC
+				enquanto (repetir == '1') faca //laço repetir
+					escreval("──────────────────");//formatação
+					escreval("Calcular IMC...");
+					escreval("Digite seu peso: Ex:59");
+					leia(peso);
+					escreval("Digite sua altura: Ex:1.80");
+					leia(altura);
+					imc = peso / exp(altura, 2);//calculo do IMC do usuário
+					escreval("Seu IMC é: ",imc::2);
+					
+					escreval("1 - para calcular novamente");//laço repetir, caso aperte o 1 o laço continua sendo verdade
+					escreval("2 - voltar");//laço repetir, caso aperte 2 o laço passa a ser falso logo ele sai do laço e volta para o menu
+					leiaCaracter(repetir);
+				fimEnquanto
+				interrompa;
+				
+			caso '3' //realiza a operação de multiplicação
+				enquanto (repetir == '1') faca
+					escreval("──────────────────");//formatação
+					escreval("Multiplicação...");
+					escreval("Digite um número: ");
+					leia(num1);
+					escreval("Digite outro número: ");
+					leia(num2);
+					produto = num1 * num2;//realizar operação de multiplicação
+					escreval(num1 , " x " , num2 , " = " , produto);
+					
+					escreval("1 - para calcular novamente");//laço repetir//laço repetir, caso aperte o 1 o laço continua sendo verdade
+					escreval("2 - voltar");//laço repetir, caso aperte 2 o laço passa a ser falso logo ele sai do laço e volta para o menu
+					leiaCaracter(repetir);
+				fimEnquanto
+				interrompa;
+				
+			caso '4'//fim do programa
+				escreval("──────────────────");//
+				escreval("Tchau, até a próxima");
+				escreval("──────────────────");//
+				interrompa;
+		fimEscolha
+		
+		se (repetir == '2') entao //para que a condição no laço repetir continue verdade
+			repetir = '1';
+		fimSe
+		
+	fimEnquanto
+	
+fimPrincipal

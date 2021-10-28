@@ -1,0 +1,140 @@
+algoritmo missao_4;
+// Síntese
+//  Objetivo:	Exibir um menu que da acesso as seguintes opções 1 - Cadastrar Nota, 2 - Listar Notas, 3- Imprimir média, 4 - Listar Aprovados, 5 - Listar Reprovados, 
+//				6 - Listar notas maiores que a Média geral da turma, 7 - Sair
+//  Entrada :	Alguma das opções do menu, na opção 1 Podera cadastrar uma nova nota, em cada opção terá a opção de voltar ao menu
+//  Saída   :	Na opção 2 será mostrada a lista de todas as notas já cadastradas, na opção 3 será exibida a média das notas cadastradas até então,
+//				na opção 4 serão mostradas as notas dos aprovados no caso >= 5, na opção 5 será mostradas as notas dos reprovados no caso < 5,
+//				na opção 6 será listada as notas maiores que a média e na opção 7 o programa se encerra
+
+
+principal
+	// Declarações
+	inteiro i;
+	real nota[100], notas, soma, m;
+	caracter menu, voltar;
+	// Instruções
+	menu = '0';
+	voltar = '1';
+	i = 0;
+	m = 0;
+	soma = 0;
+	enquanto (menu != '7') faca //laco menu, enquanto não for digitado 7 o laço continua funcionando
+		
+		mostrar_menu();//procedimento mostra opções do menu
+		leiaCaracter(menu);//lê opção do menu
+		escolha (menu)
+			caso '1'//cadastra uma nova nota
+				limpaTela();
+				escreval("Cadastre uma nota");
+				escreva("Nota " + contador(i) + ": ");
+				leia(notas);//lê a nota
+				se (notas < 0 ou notas > 10) entao//verifica notas validas
+					escreval("Nota invalida digite novamente");
+				senao
+					se (notas >= 0 ou notas < 10) entao
+						nota[i] = notas;
+						i = contador(i);
+					fimSe	
+				fimSe
+				interrompa;
+			caso '2'//lista todas as notas cadastradas
+				enquanto (voltar != '0') faca//laço opção voltar
+					limpaTela();
+					ver_notas(i,nota);//exibe todas as notas
+					voltar = voltar_menu(voltar);//opção voltar
+				fimEnquanto//fim laço opção voltar
+				interrompa;
+			caso '3'//mostrar a média das notas cadastradas
+				enquanto (voltar != '0') faca//laço opção voltar
+					limpaTela();
+					escreval("Média das notas");
+					m = media(m,soma,nota, i);//calcula a média
+					escreval(m::2);
+					voltar = voltar_menu(voltar);//opção voltar
+				fimEnquanto//fim laço opção voltar
+				interrompa;
+			caso '4'//listar notas maiores ou iguais a 5
+				enquanto (voltar != '0') faca//laço opção voltar
+					limpaTela();
+					escreval("Lista das notas aprovadas");
+					para (i de 0 ate i-1 passo 1)faca
+						se (nota[i] >= 5) entao
+							escreval(nota[i]);
+						fimSe
+					fimPara
+					voltar = voltar_menu(voltar);//opção voltar
+				fimEnquanto//fim laço opção voltar
+				interrompa;
+			caso '5'//lista notas menonres que 5
+				enquanto (voltar != '0') faca//laço opção voltar
+					limpaTela();
+					escreval("Lista das notas reprovadas");
+					para (i de 0 ate i-1 passo 1)faca
+						se (nota[i] < 5) entao
+							escreval(nota[i]);
+						fimSe
+					fimPara
+					voltar = voltar_menu(voltar);//opção voltar
+				fimEnquanto//fim laço opção voltar
+				interrompa;
+			caso '6'//lista notas maiores que a média
+				enquanto (voltar != '0') faca//laço opção voltar
+					limpaTela();
+					escreval("lista das notas maiores que a média");
+					m = media(m,soma,nota, i);
+					para (i de 0 ate i-1 passo 1)faca
+						se (nota[i] > m) entao
+							escreval(nota[i]);
+						senao
+						fimSe
+					fimPara
+					voltar = voltar_menu(voltar);//opção voltar
+				fimEnquanto//fim laço opção voltar
+				interrompa;
+			caso '7'//fecha programa
+				interrompa;
+		fimEscolha
+		se (voltar == '0') entao //para que a condição no laço repetir continue verdade
+			voltar = '1';
+		fimSe
+	fimEnquanto
+fimPrincipal
+
+procedimento mostrar_menu()//opções menu
+	limpaTela();
+	escreval("Menu:");
+	escreval("1 - Cadastrar Nota");
+	escreval("2 - Listar Notas");
+	escreval("3 - Imprimir média");
+	escreval("4 - Listar Aprovados");
+	escreval("5 - Listar Reprovados");
+	escreval("6 - Listar notas maiores que a Média geral da turma");
+	escreval("7 - Sair");
+fimProcedimento
+
+funcao inteiro contador(inteiro i)//contador
+	i = i + 1;
+	retorna i;
+fimFuncao
+
+procedimento ver_notas(inteiro i, real nota[])//lista notas
+	escreval("Notas cadastradas");
+	para (i de 0 ate i-1 passo 1)faca
+		escreval(nota[i]);
+	fimPara
+fimProcedimento
+
+funcao real media(real m, real soma, real nota[], inteiro i)//calcula média
+	para (i de 0 ate i-1 passo 1)faca
+		soma = soma + nota[i];
+	fimPara
+	m = soma / i;
+	retorna m;
+fimFuncao
+
+funcao caracter voltar_menu(caracter voltar)//opção voltar
+	escreval("0 - voltar");
+	leiaCaracter(voltar);
+	retorna voltar;
+fimFuncao

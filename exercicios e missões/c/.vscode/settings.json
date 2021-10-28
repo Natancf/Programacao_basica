@@ -1,0 +1,12 @@
+{
+    "files.associations": {
+        "stdlib.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "Enabled",
+    "workbench.editor.enablePreviewFromQuickOpen": true,
+    "workbench.editor.enablePreviewFromCodeNavigation": true,
+    "zenMode.centerLayout": false,
+    "editor.suggest.showStatusBar": true,
+    "search.quickOpen.includeSymbols": true,
+    "editor.quickSuggestions": null
+}

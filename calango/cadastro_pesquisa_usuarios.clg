@@ -1,0 +1,83 @@
+algoritmo semNome;
+// Síntese
+//  Objetivo:  
+//  Entrada :
+//  Saída   :
+
+
+principal
+	// Declarações
+	texto nomes[100], usuario_pesquisado;
+	inteiro count, opcao;
+	count = 0;
+	
+	// Instruções
+	faca
+		escreval("1 - Cadastrar");
+		escreval("2 - Listar");
+		escreval("3 - Pesquisar");
+		escreval("4 - Sair");
+		leia(opcao);
+
+		escolha(opcao)
+			caso 1
+				escreval(" --------- CADASTRO DE USUÁRIOS ----------------");
+				escreval("Digite o nome do usuario:");
+				leia(nomes[count]);
+				count = count + 1;
+				interrompa;
+			caso 2
+				lista_usuarios(nomes, count);
+				interrompa;
+			caso 3
+				usuario_pesquisado = pesquisa_usuario(nomes, count);
+				escreval(usuario_pesquisado);
+				interrompa;
+			caso 4
+				escreval("Sair!!");
+				interrompa;
+			outroCaso
+				escreval("Opção inválida!!");
+		fimEscolha
+	enquanto(opcao != 4);
+
+fimPrincipal
+
+procedimento lista_usuarios(texto nomes[], inteiro quantidade)
+	inteiro i;
+	escreval("------------ LISTA DE USUARIOS -----------------");
+	para(i de 0 ate quantidade-1 passo 1) faca
+		escreval(nomes[i]);
+	fimPara
+fimProcedimento
+
+
+funcao texto pesquisa_usuario(texto nomes[], inteiro quantidade)
+	texto pesquisa;
+	inteiro i;
+	
+	escreval("Digite o nome do usuário que deseja pesquisar:");
+	leia(pesquisa);
+
+	para(i de 0 ate quantidade-1 passo 1) faca
+		se(comparaTexto(pesquisa, nomes[i]) == 0) entao
+			escreval("Achei!!!");
+			retorna nomes[i];
+		fimSe
+	fimPara
+
+	retorna "Usuario não encontrado";
+fimFuncao
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,27 @@
+char str[11] - forma como se escreve uma strig
+
+formas de ler uma string
+scanf("%s",nomeDaVariavel); lê a string mas só até o primeiro espaço em branco a melhor maneira de mudar isso é usando o 
+fgets(nomeDaVariavel,11[tamanho],stdin[vai ler uma string do teclado]);
+
+#include <strig.h> - Biblioteca para trabalhar com strigs
+
+strcat(str1[string de destino]," texto qualquer" ou str2 [string de origem]); - concatena strigs
+
+strncat(str1[string de destino], str2 [string de origem], 15[número de caracteres que você quer copiar]); - juntar um certo número de caracteres
+
+strlen(str) - tamanho da strig
+
+strcpy(nome[string de destino],"Natan"[string de origem]); strcpy(nome1,nome2); - copia dados de uma string para outra
+
+strncpy(nome1,nome2,5) - copia só a quantidade informada de caracteres
+
+retorno = strcmp(str1,str2); - compara duas strigs e retorna  0: conteúdo das strigs é igual
+< 0: conteúdo da string1 é menor do que a string2
+> 0: conteúdo da string1 é maior do que a string2
+
+strncmp - posso comparar n posições
+
+strstr(string1, string2); - verifica se string2 aparece em string1
+
+islower(c) - verifica se o caracter é minuscula

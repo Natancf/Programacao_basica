@@ -1,0 +1,33 @@
+algoritmo semNome;
+// Síntese
+//  Objetivo:  
+//  Entrada :
+//  Saída   :
+
+
+principal
+	// Declarações
+	inteiro num1, cont,contador;
+	real verificaprimo;
+	
+	// Instruções
+	leia(num1);
+	cont = 2;
+	contador = 0;
+	verificaprimo = 1;
+
+	faca
+		verificaprimo = num1 % cont;
+		cont = cont + 1;
+	       
+		se (verificaprimo == 0) entao
+			contador = contador +1;
+		fimSe
+		
+	enquanto (cont < num1);
+	se (contador == 0) entao
+		escreval("é primo");
+	senao
+		escreval("não é primo");
+	fimSe
+fimPrincipal

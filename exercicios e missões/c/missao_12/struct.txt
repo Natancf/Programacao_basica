@@ -1,0 +1,42 @@
+struct horario{
+    int horas;
+    int minutos;
+    int segundos;
+    double teste;
+    char letra;
+};
+
+struct horario agora;
+
+agora.horas = 15;
+agora.minutos = 17;
+agora.segundos = 30;
+
+printf("%d:%d:%d\n", agora.horas, agora.minutos, agora.segundos);
+
+struct horario depois;
+depois.horas = agora.horas + 10;
+depois.minutos agora.minutos;
+depois.teste = 50.55 / 123;
+depois.letra = 'a'
+
+printf("%i\n", depois.horas);
+printf("%i\n", depois.minutos);
+printf("%f\n", depois.teste);
+printf("%c\n", depois.letra);
+
+
+
+struct horario{
+    int hora;
+    int minuto;
+    int segundo;
+}
+
+struct horario teste [5] =
+{{10, 20, 30}, {20, 30, 40}, {130, 40, 50},
+{40, 50, 60}, {150, 60, 70}};
+
+printf("%i :%i :%i \n", teste[0].hora,
+                        teste[0].minuto,
+                        teste[0].segundo);

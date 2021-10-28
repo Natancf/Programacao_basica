@@ -1,0 +1,194 @@
+algoritmo missao_5;
+// Síntese
+//  Objetivo: 	Exibir um menu que da acesso as seguintes opções 1 - Cadastrar Estudantes, 2 - Listar Estudantes, 3 - Listar Aprovados, 4 - Listar Reprovados, 
+//				5 -Pesquisar Estudante, 6 - Sair
+//  Entrada :	Alguma das opções do menu, na opção 1 cadastro de um novo estudantes, na opção 5 irá poder pesquisa por qualquer nome, em cada opção terá a opção de voltar ao menu
+//	Saída   :	Na opção 1 caso for colocado um nome com menos de 3 caracteres ou uma nota negativa ou maior que 10, será exibida uma mensagem de erro e será pedido novamente 
+//				nome e nota valida
+//				Na opção 2 será mostrada a lista de todos os estudantes já cadastrados, na opção 3 serão mostrada a quantidade de aprovados, o nome e a nota dos mesmos
+//			 	na opção 4 será mostrada a quantidade de reprovados, notas dos reprovados, o nome e a nota dos mesmos
+//				na opção 5 será mostrado o nome e a menção do aluno pesquisado caso seja encontrado, se não for encontrado será exibida a mensagem de erro "Aluno não encontrado!" 
+//				e na opção 7 o programa se encerra.
+
+
+
+principal
+	// Declarações
+	inteiro cont, cont_aprovados, cont_reprovados, verifica_aprovacao;
+	real notas[200];
+	caracter menu, voltar;
+	texto nomes[200],aluno_pesquisado;
+	
+	// Instruções
+	menu = '0';
+	cont = 0;
+	cont_aprovados = 0;
+	cont_reprovados = 0;
+	voltar = '1';
+	
+	enquanto (menu != '6') faca //laco menu, enquanto não for digitado 6 o laço continua funcionando
+		
+		limpaTela();
+		escreval("+-----------------------------------+");
+		escreval("|               Menu:               |");
+		escreval("+-----------------------------------+");
+		escreval("| 01 - Cadastrar Estudantes         |");
+		escreval("| 02 - Listar Estudantes            |");
+		escreval("| 03 - Listar Aprovados             |");
+		escreval("| 04 - Listar Reprovados            |");
+		escreval("| 05 - Pesquisar Estudante          |");
+		escreval("| 06 - Finalizar Programa           |");
+		escreval("+-----------------------------------+");
+		leiaCaracter(menu);
+		escolha (menu)
+			caso '1'//cadastrar estudante
+				limpaTela();
+				escreval("Cadastrar Estudante");
+				cadastrar_nome(cont,nomes);//função cadastrar_nome
+				cadastrar_nota(nomes, cont,  notas);//função cadastrar_nota
+				se (notas[cont] < 5) entao
+					cont_reprovados = cont_reprovados + 1;
+				senao
+					se (notas[cont] >= 5) entao
+						cont_aprovados = cont_aprovados + 1;
+					fimSe
+				fimSe
+				cont = cont + 1;
+				interrompa;
+			caso '2'//lista todas os estudantes cadastrados com nome, nota e se foi aprovado ou reprovado
+				enquanto (voltar != '0') faca//laço opção voltar
+					limpaTela();
+					escreval("Notas cadastradas");
+					para (cont de 0 ate cont-1 passo 1)faca
+						escreva(nomes[cont] + " - " + notas[cont]);
+						se (notas[cont] < 5) entao
+							escreval(" - Reprovado");
+						senao
+							se (notas[cont] >= 5) entao
+								escreval(" - Aprovado");
+							fimSe
+						fimSe
+					fimPara
+					voltar = voltar_menu(voltar);//opção voltar
+				fimEnquanto//fim laço opção voltar
+				interrompa;
+			caso '3'//listar aprovados
+				enquanto (voltar != '0') faca//laço opção voltar
+					aprovados(cont_aprovados, cont,nomes,notas);//funcao aprovados
+					voltar = voltar_menu(voltar);//opção voltar
+				fimEnquanto//fim laço opção voltar
+				interrompa;
+			caso '4'//listar reprovados
+				enquanto (voltar != '0') faca//laço opção voltar
+					reprovados(cont_reprovados, cont,nomes,notas);//funcao reprovados
+					voltar = voltar_menu(voltar);//opção voltar
+				fimEnquanto//fim laço opção 
+				interrompa;
+			caso '5'//pesquisar por nomes
+				enquanto (voltar != '0') faca//laço opção voltar
+					aluno_pesquisado = pesquisar_alunos(cont,nomes,notas);//funçao pesquisar_alunos
+					escreval(aluno_pesquisado);
+					voltar = voltar_menu(voltar);//opção voltar
+				fimEnquanto//fim laço opção 
+				interrompa;
+			caso '6'//fecha programa
+				interrompa;
+		fimEscolha
+		se (voltar == '0') entao //para que a condição no laço repetir continue verdade
+			voltar = '1';
+		fimSe
+	fimEnquanto
+fimPrincipal
+
+funcao texto cadastrar_nome(inteiro cont, texto nomes[])//cadastra novo nome
+	escreva("Nome do estudante: ");
+	leia(nomes[cont]);
+	enquanto (tamanhoTexto(nomes[cont]) < 3) faca
+		limpaTela();
+		escreval("Escreva um nome válido!");
+		escreval("Cadastrar Estudante");
+		escreva("Nome do estudante: ");
+		leia(nomes[cont]);
+	fimEnquanto
+	retorna nomes[cont];
+fimFuncao
+
+funcao real cadastrar_nota(texto nomes[], inteiro cont, real notas[])//cadastra nova nota
+	limpaTela();
+	escreval("Nota do(a) " + nomes[cont] + ": ");
+	leia(notas[cont]);
+	enquanto (notas[cont] < 0 ou notas[cont] > 10) faca
+		limpaTela();
+		escreval("Digite uma nota válida!");
+		escreval("Nota do(a) " + nomes[cont] + ": ");
+		leia(notas[cont]);
+	fimEnquanto
+	retorna notas[cont];
+fimFuncao
+
+procedimento aprovados(inteiro cont_aprovados, inteiro cont, texto nomes[], real notas[])//lista alunos aprovados
+	limpaTela();
+	escreval("Lista dos alunos aprovadas");
+	escreva("Quantidade de alunos aprovados: ");
+	escreval(cont_aprovados);
+	para (cont de 0 ate cont-1 passo 1)faca
+		se (notas[cont] >= 5) entao
+			escreval(nomes[cont] + " - " + notas[cont] + " - " );
+		fimSe
+	fimPara
+fimProcedimento
+
+procedimento reprovados(inteiro cont_reprovados, inteiro cont, texto nomes[], real notas[])//lista alunos reprovados
+	limpaTela();
+	escreval("Lista das notas reprovadas");
+	escreva("quantidade de alunos reprovados: ");
+	escreval(cont_reprovados);
+	para (cont de 0 ate cont-1 passo 1)faca
+		se (notas[cont] < 5) entao
+			escreval(nomes[cont] + " - " + notas[cont] + " - " + (5 - notas[cont]));
+		fimSe
+	fimPara
+fimProcedimento
+
+funcao texto pesquisar_alunos( inteiro cont, texto nomes[], real notas[])//pesquisa nome de algum aluno dento de alunos[] e retorna seu nome e menção
+	texto pesquisa_nome;
+	inteiro i;
+	
+	limpaTela();
+	escreva("pesquisar nome: ");
+	leia(pesquisa_nome);
+	para (i de 0 ate cont-1 passo 1) faca
+		se (comparaTexto(pesquisa_nome, nomes[i]) == 0) entao
+			se (notas[i] == 0) entao
+				retorna nomes[i] + " - SR";
+			senao
+				se (notas[i] >= 1 e notas[i] <= 2.9) entao
+					retorna nomes[i] + " - II";
+				senao
+					se (notas[i] >= 3 e notas[i] <= 4.9) entao
+						retorna nomes[i] + " - MI";
+					senao
+						se (notas[i] >= 5 e notas[i] <= 6.9) entao
+							retorna nomes[i] + " - MM";
+						senao
+							se (notas[i] >= 7 e notas[i] <= 8.9) entao
+								retorna nomes[i] + " - MS";
+							senao
+								se (notas[i] >= 9 e notas[i] <= 10) entao
+									retorna nomes[i] + " - SS";
+								fimSe
+							fimSe
+						fimSe
+					fimSe
+				fimSe
+			fimSe
+		fimSe
+	fimPara
+	retorna "Aluno não encontrado!";
+fimFuncao
+
+funcao caracter voltar_menu(caracter voltar)//opção voltar
+	escreval("0 - voltar");
+	leiaCaracter(voltar);
+	retorna voltar;
+fimFuncao

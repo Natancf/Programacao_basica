@@ -1,0 +1,218 @@
+algoritmo Missao_3;
+// Síntese
+//  Objetivo:	Modularizar o máximo possível a missão 2
+
+//  Entrada :	Notas dos alunos
+//				Número com a opção do menu
+//				Dentro das opções haverá como voltar ao menu
+
+//  Saída   :	Na opção 1 - Total de Alunos
+//				Na opção 2 - Quantidade de Aprovados
+//				Na opção 3 - Quantidade de Reprovados
+//				Na opção 4 - Maior nota
+//				Na opção 4 - Menor nota
+//				Na opção 4 - sair
+
+
+principal
+	// Declarações
+	inteiro cont, aprovados, reprovados;
+	real nota, maior, menor;
+	caracter menu, voltarmenu, voltar;
+	
+	// Instruções
+	menu = '0';
+	voltar = '1';
+	cont = 0;
+	nota = 0;
+	maior = 0;
+	menor = 1000;
+	aprovados = 0;
+	reprovados = 0;
+	
+	escreval("Digite uma nota negativa para sair: ");
+	enquanto (nota >= 0) faca//cadastro de notas
+		cont = contador(cont);//contador de alunos
+		nota = ler_nota(nota, cont);//lê notas
+		maior = maior_numero(nota, maior);//recebe maior nota
+		menor = menor_numero(nota, menor);//recebe menor nota
+		aprovados = alunos_aprovados(nota, aprovados);//recebe quantidade de alunos aprovados
+		reprovados = alunos_reprovados(nota, reprovados);//recebe quantidade de aluos reprovados
+	fimEnquanto//fim cadastro de notas
+	cont = cont - 1;
+	
+	enquanto (menu != '6') faca
+		opcoes();
+		leiaCaracter(menu);//informa o menu e recebe o valor de cada opção
+	
+		escolha (menu)
+		
+			caso '1'//ver quantidade de notas cadastradas
+				enquanto (voltar != '2') faca//laço opção voltar
+					opcoes_menu1(cont);
+					voltar = voltar_menu(voltar);
+				fimEnquanto//fim laço opção voltar
+				interrompa;
+				
+			caso '2' //ver a aprovados
+				enquanto (voltar != '2') faca//laço opção voltar
+					opcoes_menu2(cont, aprovados);
+					voltar = voltar_menu(voltar);
+				fimEnquanto//fim laço opção voltar
+				interrompa;
+				
+			caso '3'//ver a reprovados
+				enquanto (voltar != '2') faca//laço opção voltar
+					opcoes_menu3(cont, reprovados);
+					voltar = voltar_menu(voltar);
+				fimEnquanto//fim laço opção voltar
+				interrompa;
+					
+			caso '4'//ver a maior nota
+				enquanto (voltar != '2') faca//laço opção voltar
+					opcoes_menu4(cont, maior);
+					voltar = voltar_menu(voltar);
+				fimEnquanto//fim laço opção voltar
+				interrompa;
+				
+			caso '5'//ver a menor nota
+				enquanto (voltar != '2') faca//laço opção voltar
+					opcoes_menu5(cont, menor);
+					voltar = voltar_menu(voltar);
+				fimEnquanto//fim laço opção voltar
+				interrompa;
+				
+			caso '6'//fim do programa
+				opcoes_menu6(cont);
+				interrompa;
+			outroCaso
+				escreval("opção invalida");
+		fimEscolha
+		se (voltar == '2') entao //para que a condição no laço repetir continue verdade
+			voltar = '1';
+		fimSe
+		
+	fimEnquanto
+	
+fimPrincipal
+
+funcao inteiro contador(inteiro cont)//contador
+	cont = cont + 1;
+	retorna cont;
+fimFuncao
+
+funcao real ler_nota(real nota, inteiro cont)//recebe as notas dos alunos
+	escreval("nota ", cont, ":");
+	leia(nota);
+	retorna nota;
+fimFuncao
+
+funcao real maior_numero(real nota, real maior)//recebe a maior nota de todas as informadas
+	se (nota > maior) entao
+		maior = nota;
+	fimSe
+	retorna maior;
+fimFuncao
+
+funcao real menor_numero(real nota, real menor)//recebe a menor nota de todas as informadas
+	se (nota < menor e nota >=0) entao
+		menor = nota;
+	fimSe
+	retorna menor;
+fimFuncao
+
+
+funcao inteiro alunos_aprovados(real nota, inteiro aprovados)//recebe o número de alunos aprovados
+	se (nota >= 5) entao//condicional para aprovados e reprovados
+		aprovados = aprovados + 1;
+	fimSe
+	retorna aprovados;
+fimFuncao
+
+funcao inteiro alunos_reprovados(real nota, inteiro reprovados)//recebe o número de alunos reprovados
+	se (nota < 5 e nota >= 0) entao
+		reprovados = reprovados + 1;
+	fimSe
+	retorna reprovados;
+fimFuncao
+
+procedimento opcoes()//exibir opções do menu
+	limpaTela();
+	escreval("Menu:");//Menu
+	escreval("1 - Total de Alunos");
+	escreval("2 - Quantidade de Aprovados");
+	escreval("3 - Quantidade de Reprovados");
+	escreval("4 - Maior nota");
+	escreval("5 - Menor nota");
+	escreval("6 - Sair");
+fimProcedimento
+
+procedimento opcoes_menu1(inteiro cont)//mostra as informações na opção 1 do menu
+	limpaTela();
+	escreval("Total de Alunos");
+	escreval("────────────────────");//formatação
+	se (cont == 1) entao//escreval singular
+		escreval("Você adicionou a nota de ", cont, " aluno(s).");
+	senao//escreval plural
+		escreval("Você adicionou a nota de ", cont, " alunos.");
+	fimSe
+	escreval(" ");//formatação
+	escreval("2 - voltar");
+fimProcedimento
+
+procedimento opcoes_menu2(inteiro cont, inteiro aprovados)//mostra as informações na opção 2 do menu
+	limpaTela();
+	escreval("Quantidade de Aprovados");
+	escreval("──────────────────");//formatação
+	se (aprovados == 1) entao //escreval singular
+		escreval(aprovados, " aluno foi aprovado");
+	senao//escreval plural
+		escreval(aprovados, " alunos foram aprovados");
+	fimSe
+	escreval(" ");//formatação
+	escreval("2 - voltar");
+fimProcedimento
+
+procedimento opcoes_menu3(inteiro cont, inteiro reprovados)//mostra as informações na opção 3 do menu
+	limpaTela();
+	escreval("Quantidade de Reprovados");
+	escreval("──────────────────");//formatação
+	se (reprovados == 1) entao//escreval singular
+		escreval(reprovados, " aluno foi reprovado");
+	senao//escreval plural
+		escreval(reprovados, " alunos foram reprovados");
+	fimSe
+	escreval(" ");//formatação
+	escreval("2 - voltar");
+fimProcedimento
+
+procedimento opcoes_menu4(inteiro cont, real maior)//mostra as informações na opção 4 do menu
+	limpaTela();
+	escreval("Maior nota");
+	escreval("──────────────────");//formatação
+	escreval("A maior nota foi: ", maior);
+	escreval(" ");//formatação
+	escreval("2 - voltar");
+fimProcedimento
+
+procedimento opcoes_menu5(inteiro cont, real menor)//mostra as informações na opção 5 do menu
+	limpaTela();
+	escreval("Menor nota");
+	escreval("──────────────────");//formatação
+	escreval("A menor nota foi: ", menor);
+	escreval(" ");//formatação
+	escreval("2 - voltar");
+fimProcedimento
+
+procedimento opcoes_menu6(inteiro cont)//mostra as informações na opção 6 do menu
+	limpaTela();
+	escreval("──────────────────");
+	escreval("Tchau, até a próxima!");
+	escreval("──────────────────");
+fimProcedimento
+
+funcao caracter voltar_menu(caracter voltar)//função para voltar ao menu
+	leiaCaracter(voltar);
+	retorna(voltar);
+fimFuncao
+

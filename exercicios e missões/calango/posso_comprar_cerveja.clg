@@ -1,0 +1,87 @@
+algoritmo semNome;
+// Síntese
+//  Objetivo:  
+//  Entrada :
+//  Saída   :
+principal
+	// Declarações
+	inteiro idade;
+	texto pais;
+	inteiro numero, maior, quantidade;
+
+	maior = 0;
+
+	// Instruções
+	idade = leia_idade();
+    escreval("Digite onde voce mora:");
+	leia(pais);
+	pais = valida_pais(pais);
+	posso_ou_nao_posso(idade, pais);
+
+fimPrincipal
+
+procedimento imprime_linha(inteiro quantidade)
+	inteiro i;
+	para(i de 0 ate quantidade passo 1) faca
+		escreva("*");
+	fimPara
+	escreval(" ");
+fimProcedimento
+
+funcao logico eh_maior(inteiro numero, inteiro maior)
+	se(numero > maior) entao
+		retorna verdadeiro;
+	senao
+		retorna falso;
+	fimSe
+fimFuncao
+
+funcao inteiro leia_idade()
+	inteiro idade;
+	pede_idade();
+	leia(idade);
+	idade = valida_idade(idade);
+	
+	retorna idade;
+fimFuncao
+
+procedimento pede_idade()
+	escreval("Digite sua idade:");
+fimProcedimento
+
+funcao inteiro valida_idade(inteiro idade)
+	enquanto(idade <= 0) faca
+		escreval("Erro!!! Digite uma idade maior que zero!");
+		leia(idade);
+	fimEnquanto
+	retorna idade;
+fimFuncao
+
+// Verifica com base na idade e no pais, se o usuário pode ou não comprar cerveja
+procedimento posso_ou_nao_posso(inteiro idade, texto pais)
+	se(idade >= descobre_idade_minima(pais)) entao
+		escreval("Você pode comprar cerveja!!");
+	senao
+		escreval("Você NÃO pode comprar cerveja!!!");
+	fimSe
+fimProcedimento
+
+// Descobre a idade mínima para comprar cerveja no pais passado como parâmetro
+funcao inteiro descobre_idade_minima(texto pais)
+	se(comparaTexto(pais, "brasil") == 0) entao
+		retorna 18;
+	senao
+		se(comparaTexto(pais, "eua") == 0) entao
+			retorna 21;
+		fimSe
+	fimSe
+fimFuncao
+
+// Verifica se o pais inserido está entre os paises conhecidos pelo programa.
+funcao texto valida_pais(texto pais)
+	enquanto(comparaTexto(pais, "brasil") != 0 e comparaTexto(pais, "eua") != 0) faca
+		escreval("Erro!! Só conhecemos o brasil e os eua. Digite novamente:");
+		leia(pais);
+	fimEnquanto
+	retorna pais;
+fimFuncao

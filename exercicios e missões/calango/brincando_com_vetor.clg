@@ -1,0 +1,99 @@
+algoritmo semNome;
+// Síntese
+//  Objetivo:  
+//  Entrada :
+//  Saída   :
+
+
+principal
+	// Declarações
+	inteiro numeros[10];
+	inteiro i, num_separacao;
+	
+	// Instruções
+	para(i de 0 ate 9 passo 1) faca
+		escreval("Digite um numero:");
+		leia(numeros[i]);
+	fimPara
+
+	num_separacao = 20;
+	
+	escreval("Imprimindo sem negativos:");
+	imprime_vetor_sem_negativos(numeros);
+	imprime_separacao(num_separacao);
+	
+	escreval("Imprimindo o Vetor:");
+	imprime_vetor(numeros);
+	imprime_separacao(num_separacao);
+	
+	escreval("Removendo números negativos.....");
+	// Reparar na função altera vetor.. que além de alterar o vetor, retorna o número de alterações.
+	escreval("Número de posições alteradas: " + altera_vetor(numeros));
+	imprime_separacao(num_separacao);
+	escreval("Imprimindo o Vetor:");
+	imprime_vetor(numeros);
+
+	escreval("Quantidade de números pares: " + conta_pares(numeros));
+fimPrincipal
+
+procedimento imprime_separacao(inteiro n)
+	inteiro i;
+	para(i de 0 ate n-1 passo 1) faca
+		escreva("*");
+	fimPara
+	escreval("");
+fimProcedimento
+
+procedimento imprime_vetor(inteiro nums[])
+	inteiro i;
+	para(i de 0 ate 9 passo 1) faca
+		escreval(nums[i]);
+	fimPara
+fimProcedimento
+
+
+
+procedimento imprime_vetor_sem_negativos(inteiro numeros[])
+	inteiro i;
+	para(i de 0 ate 9 passo 1) faca
+		se(numeros[i] < 0) entao
+			escreval("0");
+		senao
+			escreval(numeros[i]);
+		fimSe
+	fimPara
+fimProcedimento
+
+
+funcao inteiro altera_vetor(inteiro numeros[])
+	inteiro i, count;
+	count = 0;
+	para(i de 0 ate 9 passo 1) faca
+		se(numeros[i] < 0) entao
+			numeros[i] = 0;
+			count = count + 1;
+		fimSe
+	fimPara
+	retorna count;
+fimFuncao
+
+
+funcao inteiro conta_pares(inteiro vet[])
+	inteiro count, i;
+	count = 0;
+	para(i de 0 ate 9 passo 1) faca
+		se(vet[i] % 2 == 0) entao
+			count = count + 1;
+		fimSe
+	fimPara
+
+	retorna count;
+fimFuncao
+
+
+
+
+
+
+
+

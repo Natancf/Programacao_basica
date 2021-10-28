@@ -1,0 +1,83 @@
+algoritmo semNome;
+// Síntese
+//  Objetivo:  
+//  Entrada :
+//  Saída   :
+
+
+principal
+	// Declarações
+	inteiro count;
+	inteiro numeros[200], num;
+	count = 0;
+
+	faca
+		escreval("Digite um numero:");
+		leia(num);
+		se(num > 0) entao
+			numeros[count] = num;
+			count = count + 1;
+		fimSe
+	enquanto(num > 0);
+
+	// Apresentando os resultados:
+	escreval("Listando números pares:");
+	imprime_pares(numeros, count);
+	escreval("Soma de todos os pares: " + soma_pares(numeros, count));
+
+	escreval("Listando números impares:");
+	imprime_impares(numeros, count);
+
+	escreval("Quantidade de impares: " + conta_impares(numeros, count));
+	
+fimPrincipal
+
+procedimento imprime_pares(inteiro nums[], inteiro quantidade)
+	inteiro i;
+	para(i de 0 ate quantidade-1 passo 1) faca
+		se(nums[i] % 2 == 0) entao
+			escreva(" " + nums[i]);
+		fimSe
+	fimPara
+	escreval("");
+fimProcedimento
+
+procedimento imprime_impares(inteiro nums[], inteiro quantidade)
+	inteiro i;
+	para(i de 0 ate quantidade-1 passo 1) faca
+		se(nums[i] % 2 == 1) entao
+			escreva(" " + nums[i]);
+		fimSe
+	fimPara
+	escreval("");
+fimProcedimento
+
+funcao inteiro soma_pares(inteiro vetor_numeros[], inteiro quantidade)
+	inteiro i, soma;
+	soma = 0;
+	para(i de 0 ate quantidade-1 passo 1) faca
+		se(vetor_numeros[i] % 2 == 0) entao
+			soma = soma + vetor_numeros[i];
+		fimSe
+	fimPara
+	retorna soma;
+fimFuncao
+
+funcao inteiro conta_impares(inteiro vet[], inteiro quant)
+	inteiro count, i;
+	count = 0;
+	para(i de 0 ate quant-1 passo 1) faca
+		se(vet[i] % 2 == 1) entao
+			count = count + 1;
+		fimSe
+	fimPara
+	retorna count;
+fimFuncao
+
+
+
+
+
+
+
+

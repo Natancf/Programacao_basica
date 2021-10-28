@@ -1,0 +1,166 @@
+algoritmo Missao_2;
+// Síntese
+//  Objetivo:	Cadastrar notas de alunos, e mostrar um menu que apresente as opções: Total de Alunos, Quantidade de Aprovados, Quantidade de Reprovados, Maior nota, Menor nota e sair.
+
+//  Entrada :	Notas dos alunos
+//				Número com a opção do menu
+//				Dentro das opções haverá como voltar ao menu
+
+//  Saída   :	Na opção 1 - Total de Alunos
+//				Na opção 2 - Quantidade de Aprovados
+//				Na opção 3 - Quantidade de Reprovados
+//				Na opção 4 - Maior nota
+//				Na opção 4 - Menor nota
+//				Na opção 4 - sair
+
+
+principal
+	// Declarações
+	inteiro cont, aprovados, reprovados;
+	real nota, maior, menor;
+	caracter menu, voltarmenu, voltar;
+	
+	// Instruções
+	menu = '0';
+	voltar = '1';
+	cont = 0;
+	nota = 0;
+	maior = 0;
+	menor = 0;
+	aprovados = 0;
+	reprovados = 0;
+	
+	escreval("Digite uma nota negativa para sair: ");
+	enquanto (nota >= 0) faca//cadastro de notas
+		cont = cont + 1;
+		escreval("nota ", cont, ":");
+		leia(nota);
+		
+		se (cont == 1) entao//condicional para maior e menor nota
+			maior = nota;
+			menor = nota;
+		senao
+			se (nota > maior) entao
+				maior = nota;
+			fimSe
+			se (nota < menor e nota >= 0) entao
+				menor = nota;
+			fimSe
+		fimSe//fim ondicional para maior e menor nota
+		
+		se (nota >= 5) entao//condicional para aprovados e reprovados
+			aprovados = aprovados + 1;
+		fimSe
+		se (nota < 5 e nota >= 0) entao
+			reprovados = reprovados + 1;
+		fimSe//fim condicional para aprovados e reprovados
+		
+	fimEnquanto//fim cadastro de notas
+	cont = cont - 1;
+	
+	enquanto (menu != '6') faca
+		escreval("──────────────────");//formatação
+		escreval("Menu:");//Menu
+		escreval("1 - Total de Alunos");
+		escreval("2 - Quantidade de Aprovados");
+		escreval("3 - Quantidade de Reprovados");
+		escreval("4 - Maior nota");
+		escreval("5 - Menor nota");
+		escreval("6 - Sair");
+		leiaCaracter(menu);
+		
+		escolha (menu)
+		
+			caso '1'//ver quantidade de notas cadastradas
+				enquanto (voltar != '2') faca//laço opção voltar
+					escreval("──────────────────");//formatação
+					se (cont == 1) entao//escreval singular
+						escreval("Você adicionou a nota de ", cont, " aluno.");
+					senao//escreval plural
+						escreval("Você adicionou a nota de ", cont, " alunos.");
+					fimSe
+					escreval(" ");//formatação
+					escreval("2 - voltar");
+					leiaCaracter(voltar);
+					se (voltar != '2')entao
+						escreval("opção invalida");
+					fimSe
+				fimEnquanto//fim laço opção voltar
+				interrompa;
+				
+			caso '2' //ver a aprovados
+				enquanto (voltar != '2') faca//laço opção voltar
+					escreval("──────────────────");//formatação
+					se (aprovados == 1) entao //escreval singular
+						escreval(aprovados, " aluno foi aprovado");
+					senao//escreval plural
+						escreval(aprovados, " alunos foram aprovados");
+					fimSe
+					escreval(" ");//formatação
+					escreval("2 - voltar");
+					leiaCaracter(voltar);
+					se (voltar != '2')entao
+						escreval("opção invalida");
+					fimSe
+				fimEnquanto//fim laço opção voltar
+				interrompa;
+				
+			caso '3'//ver a reprovados
+				enquanto (voltar != '2') faca//laço opção voltar
+					escreval("──────────────────");//formatação
+					se (reprovados == 1) entao//escreval singular
+						escreval(reprovados, " aluno foi reprovado");
+					senao//escreval plural
+						escreval(reprovados, " alunos foram reprovados");
+					fimSe
+					escreval(" ");//formatação
+					escreval("2 - voltar");
+					leiaCaracter(voltar);
+					se (voltar != '2')entao
+						escreval("opção invalida");
+					fimSe
+				fimEnquanto//fim laço opção voltar
+				interrompa;
+					
+			caso '4'//ver a maior nota
+				enquanto (voltar != '2') faca//laço opção voltar
+					escreval("──────────────────");//formatação
+					escreval("A maior nota foi: ", maior);
+					escreval(" ");//formatação
+					escreval("2 - voltar");
+					leiaCaracter(voltar);
+					se (voltar != '2')entao
+						escreval("opção invalida");
+					fimSe
+				fimEnquanto//fim laço opção voltar
+				interrompa;
+				
+			caso '5'//ver a menor nota
+				enquanto (voltar != '2') faca//laço opção voltar
+					escreval("──────────────────");//formatação
+					escreval("A menor nota foi: ", menor);
+					escreval(" ");//formatação
+					escreval("2 - voltar");
+					leiaCaracter(voltar);
+					se (voltar != '2')entao
+						escreval("opção invalida");
+					fimSe
+				fimEnquanto//fim laço opção voltar
+				interrompa;
+				
+			caso '6'//fim do programa
+				escreval("──────────────────");//
+				escreval("Tchau, até a próxima!");
+				escreval("──────────────────");//
+				interrompa;
+			outroCaso
+				escreval("opção invalida");
+		fimEscolha
+		
+		se (voltar == '2') entao //para que a condição no laço repetir continue verdade
+			voltar = '1';
+		fimSe
+		
+	fimEnquanto
+	
+fimPrincipal
