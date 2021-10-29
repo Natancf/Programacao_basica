@@ -23,5 +23,8 @@
 - **git add caminho_do_arquivo ou git add .** - vai adicionar ou mover os arquivos que você quer atualizar no repositório online
 - **git commit -m "informação da atualização"**
 - **git push origin branch** - Vai efetivamente atualizar o repositório online
+- **git branch nome da branch** - Vai adicionar uma nova ramificação fora na master
+- **git branch -l** - Vai listar todas as branchs daquele repositório
+- **git checkout nome da branch** - Vai pra branch que você quer trabalhar
 
 

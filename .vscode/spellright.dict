@@ -16,3 +16,5 @@ init
 bash
 ls
 mv
+master
+checkout
