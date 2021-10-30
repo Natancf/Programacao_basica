@@ -26,5 +26,6 @@
 - **git branch nome da branch** - Vai adicionar uma nova ramificação fora na master
 - **git branch -l** - Vai listar todas as branchs daquele repositório
 - **git checkout nome da branch** - Vai pra branch que você quer trabalhar
+- **git stash** - Permite salvar o arquivo temporariamente antes de enviar para um repositório
 
 
