@@ -18,3 +18,6 @@ ls
 mv
 master
 checkout
+stash
+remote
+main
