@@ -29,8 +29,11 @@
 - **git stash** - Permite salvar o arquivo temporariamente antes de enviar para um repositório
 
 enviar repositório para o GitHub
+
 git remote add origin https://github.com/Natancf/teste.git
+
 git branch -M main
+
 git push -u origin main
 
 
