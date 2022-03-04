@@ -3,12 +3,12 @@ ultimo = 10
 fila = list(range(1, ultimo+1))
 x = len(fila)
 i=1
-while len(fila) != 0:
+while True:
     print(f"\nExistem {len(fila)} clientes na fila")
     x=len(fila)
     print("Fila atual:",end=" ")
     for i in range(x):
-        print(f"cliente[{i+1}], " if i < x-1 else f'cliente[{i+1}]', end='')
+        print(f"cliente {i+1}, " if i < x-1 else f'cliente {i+1}', end='')
 
     print("\nDigite F para adicionar um cliente ao fim da fila,", 
             "ou A para realizar o atendimento. S para sair.")

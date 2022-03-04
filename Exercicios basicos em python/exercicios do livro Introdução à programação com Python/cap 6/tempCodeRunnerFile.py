@@ -1,0 +1,1 @@
+rint("Pilha vazia! Nada para lavar.")
