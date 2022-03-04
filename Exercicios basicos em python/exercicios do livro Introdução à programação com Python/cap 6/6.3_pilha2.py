@@ -2,9 +2,9 @@
 parentese = 0
 verifica_parentese = [parentese]
 teste = 0
-parar = 0
+parar = False
 
-while parar == 0:
+while not parar:
     parenteses = input()
     lista = []
     lista = list(parenteses)
@@ -21,10 +21,10 @@ while parar == 0:
                         verifica_parentese.pop(-1)
                 if len(verifica_parentese):
                     print("Ok")
-                    parar = 1
+                    parar = True
                 else:
                     print("Erro")
-                    parar = 1
+                    parar = True
         else:
             print("Valor inserido é invalido, digite \"(\" ou \")\"")
             lista.clear()
